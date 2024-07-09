@@ -4,32 +4,28 @@ build-backend = "hatchling.build"
 
 [project]
 name = "blog-web"
-dynamic = ["version"]
-description = ''
+dynamic = ["0.0.1"]
+description = 'Personal Project'
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = "MIT"
 keywords = []
 authors = [
-  { name = "U.N. Owen", email = "void@some.where" },
+  { name = "Deepak Sanjay S J", email = "sjanakisuresh@gmail.com" },
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = ["Flask"]
 
 [project.urls]
-Documentation = "https://github.com/U.N. Owen/blog-web#readme"
-Issues = "https://github.com/U.N. Owen/blog-web/issues"
-Source = "https://github.com/U.N. Owen/blog-web"
+Source = "https://github.com/DeepakSan/blog-web"
 
 [tool.hatch.version]
 path = "src/blog_web/__about__.py"
