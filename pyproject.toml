@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "blog-web"
-dynamic = ["0.0.1"]
+dynamic = ["version"]
 description = 'Personal Project'
 readme = "README.md"
 requires-python = ">=3.10"
@@ -14,13 +14,7 @@ authors = [
   { name = "Deepak Sanjay S J", email = "sjanakisuresh@gmail.com" },
 ]
 classifiers = [
-  "Development Status :: 4 - Beta",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: Implementation :: CPython",
-  "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = ["Flask"]
 
@@ -30,12 +24,11 @@ Source = "https://github.com/DeepakSan/blog-web"
 [tool.hatch.version]
 path = "src/blog_web/__about__.py"
 
-[tool.hatch.envs.types]
-extra-dependencies = [
-  "mypy>=1.0.0",
-]
-[tool.hatch.envs.types.scripts]
-check = "mypy --install-types --non-interactive {args:src/blog_web tests}"
+[tool.hatch.envs.dev]
+dependencies = []
+
+[tool.hatch.envs.dev.scripts]
+build = "export FLASK_APP=src/blog_web/app.py && flask run --host=0.0.0.0"
 
 [tool.coverage.run]
 source_pkgs = ["blog_web", "tests"]
