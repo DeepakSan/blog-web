@@ -1,5 +1,8 @@
 # Blog-Web
 
+This is a Blog Website designed by me having Hatch as a python package manager and as a flask application
+
+
 [![PyPI - Version](https://img.shields.io/pypi/v/blog-web.svg)](https://pypi.org/project/blog-web)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/blog-web.svg)](https://pypi.org/project/blog-web)
 
