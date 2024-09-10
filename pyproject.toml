@@ -16,7 +16,10 @@ authors = [
 classifiers = [
   "Programming Language :: Python",
 ]
-dependencies = ["Flask"]
+dependencies = [
+"Flask",
+"python-dotenv"
+]
 
 [project.urls]
 Source = "https://github.com/DeepakSan/blog-web"
@@ -28,7 +31,7 @@ path = "src/blog_web/__about__.py"
 dependencies = []
 
 [tool.hatch.envs.dev.scripts]
-build = "export FLASK_APP=src/blog_web/app.py && flask run --host=0.0.0.0"
+build = "flask run"
 
 [tool.coverage.run]
 source_pkgs = ["blog_web", "tests"]
