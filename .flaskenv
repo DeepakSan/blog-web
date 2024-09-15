@@ -1,3 +1,3 @@
-FLASK_APP=src.blog_web:app
+FLASK_APP=src.blog_web:create_app
 FLASK_RUN_HOST=127.0.0.1
 FLASK_RUN_PORT=5000
