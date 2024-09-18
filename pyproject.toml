@@ -18,7 +18,10 @@ classifiers = [
 ]
 dependencies = [
 "Flask",
-"python-dotenv"
+"python-dotenv",
+"Flask-SQLAlchemy",
+"psycopg2",
+"Flask-Migrate"
 ]
 
 [project.urls]
