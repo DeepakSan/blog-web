@@ -1,26 +1,26 @@
-from flask import Flask, render_template
-from .extensions import db  
-from flask_migrate import Migrate
-from urllib.parse import quote_plus, urlencode
-from authlib.integrations.flask_client import OAuth
-from dotenv import find_dotenv, load_dotenv
-from flask import redirect, render_template, session, url_for
 import os
 import json
+from flask import Flask, render_template, jsonify, redirect, session, url_for
+from .extensions import db, migrate  
+from urllib.parse import quote_plus, urlencode
+from authlib.integrations.flask_client import OAuth
 
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object('blog_web.config.Config')
     app.secret_key = app.config.get('API_KEY')
+
+
     db.init_app(app)  
+    migrate.init_app(app, db)
 
-    with app.app_context():
-        db.create_all()
+    # the below not needed since i am using flask-migrate
+    # with app.app_context():
+    #     db.create_all()
 
-    migrate = Migrate(app, db)
 
-    from .models import Count  
+    # from .models import Count  
     oauth = OAuth(app)
 
     oauth.register(
@@ -43,8 +43,18 @@ def create_app():
     @app.route("/callback", methods=["GET", "POST"])
     def callback():
         token = oauth.auth0.authorize_access_token()
-        session["user"] = token
-        return redirect("/")
+        access_token = token["access_token"]
+        headers = {"Authorization": f"Bearer {access_token}"}
+        
+        userinfo_url = f'https://{app.config.get("AUTH0_DOMAIN")}/userinfo'
+        response = oauth.auth0.get(userinfo_url, headers=headers)
+        userinfo = response.json()
+        session["user"] = userinfo  
+        email = userinfo.get("email")
+        print(f"User email: {email}", flush=True) 
+        print(token)
+        # session["user"] = token
+        return redirect("/home")
 
     @app.route("/logout")
     def logout():

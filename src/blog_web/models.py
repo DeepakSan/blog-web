@@ -1,8 +1,10 @@
 from .extensions import db  
 
-class Count(db.Model):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    count = db.Column(db.Integer, nullable=False)
+    name = db.Column(db.String(25))
+    email = db.Column(db.String(50))
+    password = db.Column(db.String(50), nullable=False)
 
     def __repr__(self):
-        return f"<count {self.count}>"
+        return f"<User {self.name}>"
